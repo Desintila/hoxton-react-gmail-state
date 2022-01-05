@@ -15,10 +15,22 @@ function App() {
     setEmails(item)
   }
 
+  function countTotalInbox() {
+    return emails.filter(function (email) {
+      return !email.read
+    }).length
+  }
+
   function toggleStar(email) {
     let item = [...emails]
     email.starred = !email.starred
     setEmails(item)
+  }
+
+  function countTotalStarred() {
+    return emails.filter(function (email) {
+      return email.starred
+    }).length
   }
 
   return (
@@ -31,14 +43,14 @@ function App() {
           // onClick={() => {}}
           >
             <span className="label">Inbox</span>
-            <span className="count">?</span>
+            <span className="count">{countTotalInbox()}</span>
           </li>
           <li
             className="item"
           // onClick={() => {}}
           >
             <span className="label">Starred</span>
-            <span className="count">?</span>
+            <span className="count">{countTotalStarred()}</span>
           </li>
 
           <li className="item toggle">
